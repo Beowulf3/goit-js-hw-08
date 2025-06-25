@@ -91,9 +91,11 @@ gallery.addEventListener("click", (event) => {
   const instanse = basicLightbox.create(`
     <img src="${event.target.dataset.source}"/>`);
   instanse.show();
-  gallery.addEventListener("keydown", (event) => {
+  const handleEsc = (event) => {
     if (event.code === "Escape") {
       instanse.close();
+      gallery.removeEventListener("keydown", handleEsc);
     }
-  });
+  };
+  gallery.addEventListener("keydown", handleEsc);
 });
